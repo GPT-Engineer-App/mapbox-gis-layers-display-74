@@ -9,7 +9,7 @@ const SideBar = () => {
   };
 
   return (
-    <div className={`bg-gray-700 text-white p-4 ${isOpen ? 'w-64' : 'w-16'} transition-width duration-300`}>
+    <div className={`bg-gray-700 text-white p-4 ${isOpen ? 'w-64' : 'w-16'} transition-all duration-300`}>
       <button onClick={toggleSidebar} className="mb-4">
         {isOpen ? 'Close' : 'Open'}
       </button>
