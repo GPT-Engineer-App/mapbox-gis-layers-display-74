@@ -7,6 +7,11 @@ const MapboxMap = () => {
   const mapContainerRef = useRef(null);
 
   useEffect(() => {
+    if (!mapboxgl.accessToken || mapboxgl.accessToken === 'YOUR_MAPBOX_ACCESS_TOKEN') {
+      console.error('Mapbox access token is not set.');
+      return;
+    }
+
     const map = new mapboxgl.Map({
       container: mapContainerRef.current,
       style: 'mapbox://styles/mapbox/streets-v11',
@@ -14,7 +19,6 @@ const MapboxMap = () => {
       zoom: 9,
     });
 
-    // Add GIS layers here
     map.on('load', () => {
       map.addSource('some-gis-layer', {
         type: 'geojson',
@@ -33,10 +37,14 @@ const MapboxMap = () => {
       });
     });
 
+    map.on('error', (e) => {
+      console.error('An error occurred with the Mapbox map:', e);
+    });
+
     return () => map.remove();
   }, []);
 
-  return <div ref={mapContainerRef} className="h-full w-full" />;
+  return <div ref={mapContainerRef} className="h-full w-full" style={{ height: '100vh', width: '100vw' }} />;
 };
 
 export default MapboxMap;
