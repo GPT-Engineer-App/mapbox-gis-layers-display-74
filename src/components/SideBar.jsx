@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 
 const SideBar = () => {
@@ -9,10 +11,10 @@ const SideBar = () => {
   };
 
   return (
-    <div className={`bg-gray-700 text-white p-4 ${isOpen ? 'w-64' : 'w-16'} transition-all duration-300`}>
-      <button onClick={toggleSidebar} className="mb-4">
+    <div className={cn("bg-gray-700 text-white p-4 transition-all duration-300", { "w-64": isOpen, "w-16": !isOpen })}>
+      <Button onClick={toggleSidebar} className="mb-4">
         {isOpen ? 'Close' : 'Open'}
-      </button>
+      </Button>
       {isOpen && (
         <div>
           <DropdownMenu>
