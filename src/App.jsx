@@ -7,10 +7,10 @@ function App() {
   return (
     <Router>
       <div className="flex flex-col h-screen">
-        <TopBar />
         <div className="flex flex-1">
           <SideBar />
-          <div className="flex-1">
+          <div className="flex-1" style={{ marginLeft: '16rem' }}>
+            <TopBar />
             <Routes>
               <Route exact path="/" element={<Index />} />
             </Routes>
